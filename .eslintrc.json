@@ -1,0 +1,84 @@
+{
+    "root": true,
+    "ignorePatterns": [
+        "src/app/svg/**/*"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.ts"
+            ],
+            "parserOptions": {
+                "project": [
+                    "tsconfig.json"
+                ],
+                "createDefaultProgram": true
+            },
+            "extends": [
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates"
+            ],
+            "rules": {
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "app",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "app",
+                        "style": "kebab-case"
+                    }
+                ],
+                "quotes": [
+                    2,
+                    "single",
+                    {
+                        "avoidEscape": true
+                    }
+                ],
+                "spaced-comment": [
+                    "error",
+                    "always",
+                    {
+                        "line": {
+                            "markers": [
+                                "/"
+                            ],
+                            "exceptions": [
+                                "-",
+                                "+"
+                            ]
+                        },
+                        "block": {
+                            "markers": [
+                                "!"
+                            ],
+                            "exceptions": [
+                                "*"
+                            ],
+                            "balanced": true
+                        }
+                    }
+                ],
+                "no-trailing-spaces": "error",
+                "eol-last": ["error", "always"],
+                "semi": ["error", "always"]
+            }
+        },
+        {
+            "files": [
+                "*.html"
+            ],
+            "extends": [
+                "plugin:@angular-eslint/template/recommended"
+            ],
+            "rules": {}
+        }
+    ]
+}

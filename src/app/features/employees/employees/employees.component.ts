@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeesComponent implements OnInit{
   ngOnInit(): void {
-    console.log('');  
+    console.log('');
   }
-  var
 }

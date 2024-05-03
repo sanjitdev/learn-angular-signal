@@ -1,6 +1,12 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { IsMarriedPipe } from '../../is-married.pipe';
 
 interface Person {
@@ -16,7 +22,7 @@ interface Person {
   standalone: true,
   imports: [RouterOutlet, IsMarriedPipe, ReactiveFormsModule],
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss'
+  styleUrl: './user-list.component.scss',
 })
 export class UserListComponent implements OnInit {
   personsSignal = signal<Person[]>([
@@ -25,8 +31,8 @@ export class UserListComponent implements OnInit {
       email: 'sanjit@gmail.com',
       phone: '+984234243234',
       age: 29,
-      married: false
-    }
+      married: false,
+    },
   ]);
 
   totalPersonSignal = computed(() => this.personsSignal().length);
@@ -36,23 +42,18 @@ export class UserListComponent implements OnInit {
     email: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
     age: new FormControl(18, Validators.required),
-    married: new FormControl(false)
+    married: new FormControl(false),
   });
 
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {
-      
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     const newPerson: Person = this.form.getRawValue() as Person;
 
-    this.personsSignal.update(persons => {
-      return [
-        ...persons,
-        newPerson
-      ]
+    this.personsSignal.update((persons) => {
+      return [...persons, newPerson];
     });
 
     this.form.reset();

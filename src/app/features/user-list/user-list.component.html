@@ -1,56 +1,93 @@
 <div>
-    <h2>Total People: {{totalPersonSignal()}}</h2>
-  </div>
-  
-  <table>
-    <thead>
+  <h2>Total People: {{ totalPersonSignal() }}</h2>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Age</th>
+      <th>Married?</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (person of personsSignal(); track $index) {
       <tr>
-        <th>User Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>
-        <th>Age</th>
-        <th>Married?</th>
+        <td>{{ person.name }}</td>
+        <td>{{ person.email }}</td>
+        <td>{{ person.phone }}</td>
+        <td>{{ person.age }}</td>
+        <td>{{ person.married | isMarried }}</td>
       </tr>
-    </thead>
-    <tbody>
-      @for (person of personsSignal(); track $index) {
-        <tr>
-          <td>{{ person.name }}</td>
-          <td>{{ person.email }}</td>
-          <td>{{ person.phone }}</td>
-          <td>{{ person.age }}</td>
-          <td>{{ person.married | isMarried }}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-  
-  <div class="form">
-    <form [formGroup]="form">
-      <div>
-        <fieldset>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" formControlName="name" class="form-control" type="text" placeholder="Enter Name" />
-          </div>
-          <div class="form-group">
-            <label for="exampleTextarea">Email</label>
-            <input id="email" formControlName="email" class="form-control" type="text" placeholder="Enter Email" />
-          </div>
-          <div class="form-group">
-            <label for="exampleTextarea">Phone</label>
-            <input id="phone" formControlName="phone" class="form-control" type="text" placeholder="Enter Phone" />
-          </div>
-          <div class="form-group">
-            <label for="exampleTextarea">Age</label>
-            <input id="age" formControlName="age" class="form-control" type="text" placeholder="Enter Age" />
-          </div>
-          <div class="form-group">
-            <label for="exampleTextarea">Married?</label>
-            <input id="married" formControlName="married" class="form-control" type="checkbox" placeholder="married"/>
-          </div>
-          <button class="button" type="submit" [disabled]="!form.valid" (click)="onSubmit()">+ Add Person</button>
-        </fieldset>
-      </div>
-    </form>
-  </div>
+    }
+  </tbody>
+</table>
+
+<div class="form">
+  <form [formGroup]="form">
+    <div>
+      <fieldset>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            formControlName="name"
+            class="form-control"
+            type="text"
+            placeholder="Enter Name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea">Email</label>
+          <input
+            id="email"
+            formControlName="email"
+            class="form-control"
+            type="text"
+            placeholder="Enter Email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea">Phone</label>
+          <input
+            id="phone"
+            formControlName="phone"
+            class="form-control"
+            type="text"
+            placeholder="Enter Phone"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea">Age</label>
+          <input
+            id="age"
+            formControlName="age"
+            class="form-control"
+            type="text"
+            placeholder="Enter Age"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea">Married?</label>
+          <input
+            id="married"
+            formControlName="married"
+            class="form-control"
+            type="checkbox"
+            placeholder="married"
+          />
+        </div>
+        <button
+          class="button"
+          type="submit"
+          [disabled]="!form.valid"
+          (click)="onSubmit()"
+        >
+          + Add Person
+        </button>
+      </fieldset>
+    </div>
+  </form>
+</div>
